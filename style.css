@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+#container {
+  margin: 0 8px;
+}
+
 h1 {
   margin: 16px 0 0 0;
   font-size: 20px;
@@ -20,7 +24,7 @@ h1 {
   border: 1px solid #ccc;
   padding: 8px;
   border-radius: 8px;
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .menus button {
