@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Menu App</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="container"></div>
+  
+  <script type="text/babel">
+    'use strict';
+
+    {
+      const Menu = (props) => {
+        
+        const [active, setActive] = React.useState(false);
+
+        const classToggle = () => {
+          setActive(!active)
+        }
+
+        return (
+          <li>
+            <p>{props.day}日目</p>
+            <p>　朝食： {props.bMenu}</p>
+            <p>　昼食： {props.lMenu}</p>
+            <p>　夕食： {props.dMenu}</p>
+            <div className={active ? "materials" : "materials hidden"} onClick={classToggle}>
+              ＜材料＞-----------------------------
+              {props.materials}
+            </div>
+          </li>
+        );
+      };
+
+      const App = () => {
+        const menus = [
+          {id: 'K001', type: 1, menu: 'ご飯、納豆、味噌汁'},
+          {id: 'K002', type: 1, menu: 'わかめご飯、味噌汁'},
+          {id: 'K003', type: 1, menu: 'フレンチトースト、ソーセージ、コンソメスープ'},
+          {id: 'K004', type: 1, menu: 'トースト、ハムエッグ、コンソメスープ、サラダ'},
+          {id: 'K005', type: 1, menu: 'ご飯、焼鮭、味噌汁'},
+          {id: 'K006', type: 2, menu: '蕎麦、天ぷら'},
+          {id: 'K007', type: 2, menu: '肉うどん'},
+          {id: 'K008', type: 2, menu: '焼きそば、中華スープ'},
+          {id: 'K009', type: 2, menu: 'ご飯、酢豚、中華スープ'},
+          {id: 'K010', type: 2, menu: 'ご飯、野菜炒め、中華スープ'},
+          {id: 'K011', type: 2, menu: 'オムライス、サラダ'},
+          {id: 'K012', type: 2, menu: 'お好み焼き'},
+          {id: 'K013', type: 2, menu: 'たこ焼き'},
+          {id: 'K014', type: 2, menu: '明太スパゲッティ、サラダ'},
+          {id: 'K015', type: 3, menu: 'カレーライス'},
+          {id: 'K016', type: 3, menu: 'ご飯、焼き魚、豚汁'},
+          {id: 'K017', type: 3, menu: 'ご飯、唐揚げ、サラダ'},
+          {id: 'K018', type: 3, menu: 'ご飯、コロッケ、サラダ'},
+          {id: 'K019', type: 3, menu: 'ご飯、ハンバーグ、サラダ'},
+          {id: 'K020', type: 3, menu: 'ご飯、麻婆豆腐、中華スープ'},
+          {id: 'K021', type: 3, menu: 'ご飯、豚の角煮、味噌汁'},
+          {id: 'K022', type: 3, menu: 'ご飯、すき焼き'},
+        ];
+
+        const dishes = [
+          {name: '味噌汁', material: '豆腐、わかめ、味噌、だし'},
+          {name: 'わかめご飯', material: 'わかめ、ご飯'},
+          {name: 'フレンチトースト', material: '卵、トースト'},
+          {name: 'コンソメスープ', material: '玉ねぎ、ニンジン、コーン、コンソメ'},
+          {name: '天ぷら', material: '天ぷら粉、レンコン、カボチャ、ブロッコリー、オクラ'},
+          {name: 'ハムエッグ', material: '卵、ハム'},
+          {name: '野菜炒め', material: 'キャベツ、ニンジン、もやし、創味シャンタン'},
+          {name: '中華スープ', material: 'わかめ、春雨、白ゴマ、創味シャンタン'},
+          {name: '酢豚', material: '豚肉、ニンジン、ピーマン、玉ねぎ'},
+          {name: 'オムライス', material: 'ご飯、卵、ケチャップ'},
+          {name: 'サラダ', material: 'レタス、トマト'},
+          {name: 'カレーライス', material: 'カレールゥ、鶏もも肉、玉ねぎ、ニンジン、ジャガイモ、福神漬け'},
+          {name: '肉うどん', material: '牛肉、うどん'},
+        ];
+
+        const chosenMenus = [];
+
+        // 献立を作成する日数
+        const days = 3;
+
+        // 献立を作成する日数分だけ繰り返す
+        for (let i = 1; i <= days; i++) {
+
+          // 献立を作成する
+          const bMenus = menus.filter((menu) => { return menu.type === 1; }); // 朝食
+          const lMenus = menus.filter((menu) => { return menu.type === 2; }); // 昼食
+          const dMenus = menus.filter((menu) => { return menu.type === 3; }); // 夕食
+
+          let getBMenu = bMenus[Math.floor(Math.random() * bMenus.length)];
+          let getLMenu = lMenus[Math.floor(Math.random() * lMenus.length)];
+          let getDMenu = dMenus[Math.floor(Math.random() * dMenus.length)];
+
+          const materials = [];
+          let chosenDishes = [...getBMenu.menu.split('、'), ...getLMenu.menu.split('、'), ...getDMenu.menu.split('、')];
+
+          // 重複を削除
+          const chosenDishes2 = Array.from(new Set(chosenDishes));
+
+          for (const dishName of chosenDishes2) {
+            for (const dish of dishes) {
+              if (dish.name === dishName) {
+                materials.push(dish.name + '：' + dish.material);
+              }
+            }
+          }
+
+          // 暫定対応
+          const materials2 = materials.map((mate, index) => 
+            <p key={index} className="hidden">　　{mate}</p>
+          );
+
+          const obj = {
+            id: i, day: i,
+            bMenu: getBMenu.menu,
+            lMenu: getLMenu.menu,
+            dMenu: getDMenu.menu,
+            materials: materials2,
+          };
+          chosenMenus.push(obj);
+        }
+
+        const menuItems = chosenMenus.map((menu) => {
+          return (
+            <Menu 
+              key={menu.id}
+              menuId={menu.id}
+              day={menu.day}
+              bMenu={menu.bMenu}
+              lMenu={menu.lMenu}
+              dMenu={menu.dMenu}
+              materials={menu.materials}
+            />
+          );
+        });
+
+        return (
+          <>
+            <h1>献立</h1>
+            <ul className="menus">
+              {menuItems}
+            </ul>
+          </>
+        );
+      };
+
+      const container = document.querySelector('#container');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    }
+  </script>
+</body>
+</html>
