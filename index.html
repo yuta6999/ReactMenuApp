@@ -30,10 +30,19 @@
             <p>　朝食： {props.bMenu}</p>
             <p>　昼食： {props.lMenu}</p>
             <p>　夕食： {props.dMenu}</p>
-            <div className={active ? "materials" : "materials hidden"} onClick={classToggle}>
+            <div className={active ? "ingredients" : "ingredients hidden"} onClick={classToggle}>
               ＜材料＞-----------------------------
-              {props.materials}
+              {props.ingredients}
             </div>
+          </li>
+        );
+      };
+
+      const RankedDish = (props) => {
+
+        return (
+          <li>
+            {props.ranking}位 {props.title} （→{props.dishName}）
           </li>
         );
       };
@@ -65,19 +74,72 @@
         ];
 
         const dishes = [
-          {name: '味噌汁', material: '豆腐、わかめ、味噌、だし'},
-          {name: 'わかめご飯', material: 'わかめ、ご飯'},
-          {name: 'フレンチトースト', material: '卵、トースト'},
-          {name: 'コンソメスープ', material: '玉ねぎ、ニンジン、コーン、コンソメ'},
-          {name: '天ぷら', material: '天ぷら粉、レンコン、カボチャ、ブロッコリー、オクラ'},
-          {name: 'ハムエッグ', material: '卵、ハム'},
-          {name: '野菜炒め', material: 'キャベツ、ニンジン、もやし、創味シャンタン'},
-          {name: '中華スープ', material: 'わかめ、春雨、白ゴマ、創味シャンタン'},
-          {name: '酢豚', material: '豚肉、ニンジン、ピーマン、玉ねぎ'},
-          {name: 'オムライス', material: 'ご飯、卵、ケチャップ'},
-          {name: 'サラダ', material: 'レタス、トマト'},
-          {name: 'カレーライス', material: 'カレールゥ、鶏もも肉、玉ねぎ、ニンジン、ジャガイモ、福神漬け'},
-          {name: '肉うどん', material: '牛肉、うどん'},
+          {name: '味噌汁', ingredient: '豆腐、わかめ、味噌、だし'},
+          {name: 'わかめご飯', ingredient: 'わかめ、ご飯'},
+          {name: 'フレンチトースト', ingredient: '卵、トースト'},
+          {name: 'コンソメスープ', ingredient: '玉ねぎ、ニンジン、コーン、コンソメ'},
+          {name: '天ぷら', ingredient: '天ぷら粉、レンコン、カボチャ、ブロッコリー、オクラ'},
+          {name: 'ハムエッグ', ingredient: '卵、ハム'},
+          {name: '野菜炒め', ingredient: 'キャベツ、ニンジン、もやし、創味シャンタン'},
+          {name: '中華スープ', ingredient: 'わかめ、春雨、白ゴマ、創味シャンタン'},
+          {name: '酢豚', ingredient: '豚肉、ニンジン、ピーマン、玉ねぎ'},
+          {name: 'オムライス', ingredient: 'ご飯、卵、ケチャップ'},
+          {name: 'サラダ', ingredient: 'レタス、トマト'},
+          {name: 'カレーライス', ingredient: 'カレールゥ、鶏もも肉、玉ねぎ、ニンジン、ジャガイモ、福神漬け'},
+          {name: '肉うどん', ingredient: '牛肉、うどん'},
+        ];
+
+        const ranking = [
+          {ranking: '1', title: '簡単！やみつきレモンねぎ塩チキン', dishName: 'レモンねぎ塩チキン'},
+          {ranking: '2', title: '簡単ふわとろ！親子丼', dishName: '親子丼'},
+          {ranking: '3', title: '大根ときゅうりの三色ナムル', dishName: '大根ときゅうりの三色ナムル'},
+          {ranking: '4', title: 'レンジでしっとり簡単よだれ鶏', dishName: 'よだれ鶏'},
+          {ranking: '5', title: 'さっぱり おかかぽん酢でナスの焼き浸し', dishName: 'ナスの焼き浸し'},
+          {ranking: '6', title: 'ごはんがすすむ！チキンとキャベツのガーリック炒め', dishName: 'チキンとキャベツのガーリック炒め'},
+          {ranking: '7', title: 'ボリューム抜群 キャベツの豚肉巻きレンジ蒸し', dishName: 'キャベツの豚肉巻き'},
+          {ranking: '8', title: 'ご飯が進む！豚肉の生姜焼き', dishName: '豚肉の生姜焼き'},
+          {ranking: '9', title: '豚バラ肉のスタミナニラ玉炒め', dishName: 'ニラ玉炒め'},
+          {ranking: '10', title: 'すぐできる！もやし中華サラダ', dishName: 'もやし中華サラダ'},
+          {ranking: '11', title: 'お箸が止まらないおいしさ 無限ナス', dishName: '無限ナス'},
+          {ranking: '12', title: 'チーズたっぷり！ピーマンの肉巻き', dishName: 'ピーマンの肉巻き'},
+          {ranking: '13', title: '本場の味ゴーヤチャンプル', dishName: 'ゴーヤチャンプル'},
+          {ranking: '14', title: 'もう箸が止まらない 無限ゴーヤ', dishName: '無限ゴーヤ'},
+          {ranking: '15', title: '我が家の定番！ピーマンとなすの味噌炒め', dishName: 'ピーマンとなすの味噌炒め'},
+          {ranking: '16', title: '基本のかぼちゃの煮物', dishName: 'かぼちゃの煮物'},
+          {ranking: '17', title: 'ズッキーニのジョン', dishName: '-'},
+          {ranking: '18', title: '豚バラと大根のスタミナみそ炒め', dishName: '-'},
+          {ranking: '19', title: '玉ねぎと豚こま切れ肉の生姜焼き', dishName: '-'},
+          {ranking: '20', title: '簡単 豚バラもやしのスタミナすき焼き', dishName: 'すき焼き'},
+          {ranking: '21', title: 'トマトときゅうりの中華風ツナサラダ', dishName: '中華風ツナサラダ'},
+          {ranking: '22', title: 'サッパリおいしい！鶏むね肉の甘辛みぞれ煮', dishName: '鶏むね肉の甘辛みぞれ煮'},
+          {ranking: '23', title: 'たっぷりナスとひき肉の ごちそう丼', dishName: '-'},
+          {ranking: '24', title: '鶏肉とズッキーニの甘酢炒め', dishName: '-'},
+          {ranking: '25', title: '照り焼きチキン', dishName: '照り焼きチキン'},
+          {ranking: '26', title: '【村田シェフ】唐揚げ', dishName: '唐揚げ'},
+          {ranking: '27', title: '豚こま肉とナスとしめじのオイスター炒め', dishName: '豚こま肉とナスとしめじのオイスター炒め'},
+          {ranking: '28', title: 'パン粉いらずで簡単＆ジュワっと！ピーマンの肉詰め', dishName: 'ピーマンの肉詰め'},
+          {ranking: '29', title: '柔らか鶏胸肉で！揚げないおろしポン酢チキン', dishName: '-'},
+          {ranking: '30', title: 'とまらない美味しさ にんじんしりしり', dishName: 'にんじんしりしり'},
+          {ranking: '31', title: '即席 きゅうりの塩昆布おかか和え', dishName: 'きゅうりの塩昆布おかか和え'},
+          {ranking: '32', title: 'ごま油香る 叩ききゅうりと鶏ササミの簡単和え', dishName: '-'},
+          {ranking: '33', title: 'ふんわり柔らかい 豆腐ハンバーグ', dishName: '豆腐ハンバーグ'},
+          {ranking: '34', title: '卵とわかめの春雨スープ', dishName: '卵とわかめの春雨スープ'},
+          {ranking: '35', title: '簡単 デミグラスソースのハンバーグ', dishName: 'ハンバーグ'},
+          {ranking: '36', title: 'やみつき ヤンニョムチキン', dishName: 'ヤンニョムチキン'},
+          {ranking: '37', title: '牛肉とピーマンのスタミナねぎ塩炒め', dishName: 'スタミナねぎ塩炒め'},
+          {ranking: '38', title: '基本の肉じゃが', dishName: '肉じゃが'},
+          {ranking: '39', title: '簡単副菜 じゃがいもとピーマンのごま和え', dishName: 'じゃがいもとピーマンのごま和え'},
+          {ranking: '40', title: 'たっぷりピーマンと ぷりぷりしらたきの甘辛炒め', dishName: '-'},
+          {ranking: '41', title: 'トマトとズッキーニの簡単イタリアン炒め', dishName: '-'},
+          {ranking: '42', title: 'めんつゆで簡単 ナスの煮浸し', dishName: 'ナスの煮浸し'},
+          {ranking: '43', title: '簡単 もやしときゅうりのツナナムル', dishName: 'もやしときゅうりのツナナムル'},
+          {ranking: '44', title: '旨みたっぷり つゆだく牛丼', dishName: '牛丼'},
+          {ranking: '45', title: '焼肉のタレで簡単ピーマンとナスのそぼろ炒め', dishName: 'ピーマンとナスのそぼろ炒め'},
+          {ranking: '46', title: 'とっても簡単！卵とトマトの中華風炒め', dishName: '卵とトマトの中華風炒め'},
+          {ranking: '47', title: 'ナスと豚肉の味噌炒め', dishName: 'ナスと豚肉の味噌炒め'},
+          {ranking: '48', title: 'こんなに簡単！茄子とひき肉のボロネーゼ風パスタ', dishName: '茄子とひき肉のボロネーゼ風パスタ'},
+          {ranking: '49', title: '超簡単！もやしナムル', dishName: 'もやしナムル'},
+          {ranking: '50', title: 'めんつゆで簡単 麻婆茄子', dishName: '麻婆茄子'},
         ];
 
         const chosenMenus = [];
@@ -97,7 +159,7 @@
           let getLMenu = lMenus[Math.floor(Math.random() * lMenus.length)];
           let getDMenu = dMenus[Math.floor(Math.random() * dMenus.length)];
 
-          const materials = [];
+          const ingredients = [];
           let chosenDishes = [...getBMenu.menu.split('、'), ...getLMenu.menu.split('、'), ...getDMenu.menu.split('、')];
 
           // 重複を削除
@@ -106,13 +168,13 @@
           for (const dishName of chosenDishes2) {
             for (const dish of dishes) {
               if (dish.name === dishName) {
-                materials.push(dish.name + '：' + dish.material);
+                ingredients.push(dish.name + '：' + dish.ingredient);
               }
             }
           }
 
           // 暫定対応
-          const materials2 = materials.map((mate, index) => 
+          const ingredients2 = ingredients.map((mate, index) => 
             <p key={index} className="hidden">　{mate}</p>
           );
 
@@ -121,7 +183,7 @@
             bMenu: getBMenu.menu,
             lMenu: getLMenu.menu,
             dMenu: getDMenu.menu,
-            materials: materials2,
+            ingredients: ingredients2,
           };
           chosenMenus.push(obj);
         }
@@ -135,7 +197,18 @@
               bMenu={menu.bMenu}
               lMenu={menu.lMenu}
               dMenu={menu.dMenu}
-              materials={menu.materials}
+              ingredients={menu.ingredients}
+            />
+          );
+        });
+
+        const rankingItems = ranking.map((rankingItem) => {
+          return (
+            <RankedDish 
+              key={rankingItem.ranking}
+              ranking={rankingItem.ranking}
+              title={rankingItem.title}
+              dishName={rankingItem.dishName}
             />
           );
         });
@@ -145,6 +218,12 @@
             <h1>献立</h1>
             <ul className="menus">
               {menuItems}
+            </ul>
+            
+            <br />
+            <p>参考情報-----------------------------</p>
+            <ul className="ranking">
+              {rankingItems}
             </ul>
           </>
         );
