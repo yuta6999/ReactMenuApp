@@ -5,13 +5,17 @@ body {
 }
 
 #container {
-  margin: 0 8px;
+  margin: 0 8px 40px;
 }
 
 h1 {
   margin: 16px 0 0 0;
   font-size: 20px;
   text-align: center;
+}
+
+p {
+  margin: 0.5em 0;
 }
 
 .menus {
