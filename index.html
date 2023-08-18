@@ -220,8 +220,11 @@
             <h1>献立</h1>
             <div className="iconBox">
               <i className="fa-solid fa-cart-shopping "></i>
-              <i className="fa-solid fa-gear"></i>
-              <i className="fa-solid fa-arrow-rotate-right"></i>
+              {/* 
+                コメントアウトしてみた
+                <i className="fa-solid fa-gear"></i>
+              */}
+              <i className="fa-solid fa-arrow-rotate-right" onClick={() => window.location.reload()}></i>
             </div>
             <ul className="menus">
               {menuItems}
