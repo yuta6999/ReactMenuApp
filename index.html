@@ -206,7 +206,10 @@
 
         // 暫定対応(必要な食材)
         const allIngredients3 = allIngredients2.map((item, index) => 
-          <span key={index}>{item}　</span>
+          <div key={index}>
+            <input type="checkbox" id={index} />
+            <label htmlFor={index}>{item}</label>
+          </div>
         );
 
         const menuItems = chosenMenus.map((menu) => {
@@ -234,15 +237,32 @@
           );
         });
         
-        const showAllIngredients = () => {
-          console.log(allIngredients2);
+        const open = () => {
+          const modal = document.getElementById('modal');
+          const mask = document.getElementById('mask');
+          modal.classList.remove('hidden');
+          mask.classList.remove('hidden');
+        }
+
+        const close = () => {
+          const modal = document.getElementById('modal');
+          const mask = document.getElementById('mask');
+          modal.classList.add('hidden');
+          mask.classList.add('hidden');
         }
 
         return (
           <>
+            <section id="modal" className="hidden">
+              <p>買い物リスト</p>
+              {allIngredients3}
+              <div id="close" onClick={close}>
+                閉じる
+              </div>
+            </section>
             <h1>献立</h1>
             <div className="iconBox">
-              <i className="fa-solid fa-cart-shopping" onClick={showAllIngredients}></i>
+              <i className="fa-solid fa-cart-shopping" onClick={open}></i>
               {/* 
                 コメントアウトしてみた
                 <i className="fa-solid fa-gear"></i>
@@ -254,12 +274,12 @@
             </ul>
             
             <br />
-            <p>必要な食材---------------------------</p>
-            {allIngredients3}
             <p>参考情報-----------------------------</p>
             <ul className="ranking">
               {rankingItems}
             </ul>
+            
+            <div id="mask" className="hidden" onClick={close}></div>
           </>
         );
       };
