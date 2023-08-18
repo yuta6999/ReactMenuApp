@@ -12,7 +12,7 @@ body {
 .iconBox {
   position: absolute;
   top: 0;
-  right: 16px;
+  right: 8px;
 }
 
 .iconBox > i {
@@ -25,6 +25,10 @@ body {
   border: #333 2px solid;
   cursor: pointer;
   margin-left: 3px;
+}
+
+p {
+  font-size: 14px;
 }
 
 h1 {
@@ -63,13 +67,24 @@ p {
   padding: 4px;
 }
 
-.hidden > p {
-  display: none;
+.ingredientsItem {
+  font-size: 12px;
+  height: 100%;
+  opacity: 1;
+  margin: 0;
+  transition: all .3s ease;
+}
+.hidden > .ingredientsItem {
+  height: 0;
+  opacity: 0;
 }
 
 @media (min-width: 600px) {
   #container {
     width: 600px;
     margin: 0 auto;
+  }
+  p {
+    font-size: 16px;
   }
 }
