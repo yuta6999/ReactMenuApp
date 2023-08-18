@@ -69,14 +69,7 @@ p {
 
 .ingredientsItem {
   font-size: 12px;
-  height: 100%;
-  opacity: 1;
   margin: 0;
-  transition: all .3s ease;
-}
-.hidden > .ingredientsItem {
-  height: 0;
-  opacity: 0;
 }
 
 @media (min-width: 600px) {
@@ -86,5 +79,54 @@ p {
   }
   p {
     font-size: 16px;
+  }
+}
+
+dl {
+  margin: 0;
+}
+
+dl > div {
+  margin-bottom: 8px;
+}
+
+dt {
+  /* padding: 8px; */
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+dt::after {
+  content: '+';
+  position: absolute;
+  /* top: 8px; */
+  right: 16px;
+  transition: transform .3s;
+}
+
+div.appear dt::after {
+  transform: rotate(45deg);
+}
+
+dd {
+  padding: 8px;
+  margin: 0;
+  display: none;
+}
+
+div.appear dd {
+  display: block;
+  animation: .3s fadeIn;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
   }
 }

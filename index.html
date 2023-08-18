@@ -19,10 +19,15 @@
     {
       const Menu = (props) => {
         
-        const [active, setActive] = React.useState(false);
+        const toggle = (e) => {
+          const dts = document.querySelectorAll('dt');
+          e.target.parentNode.classList.toggle('appear');
 
-        const classToggle = () => {
-          setActive(!active)
+          // dts.forEach(el => {
+          //   if (e.target.id !== el.id) {
+          //     el.parentNode.classList.remove('appear');
+          //   }
+          // });
         }
 
         return (
@@ -31,9 +36,9 @@
             <p>　朝： {props.bMenu}</p>
             <p>　昼： {props.lMenu}</p>
             <p>　夕： {props.dMenu}</p>
-            <div className={active ? "ingredients" : "ingredients hidden"} onClick={classToggle}>
-              ＜材料＞-----------------------------
-              {props.ingredients}
+            <div className="ingredients">
+              <dt onClick={toggle} id={props.day}>＜材料＞-----------------------------</dt>
+              <dd>{props.ingredients}</dd>
             </div>
           </li>
         );
