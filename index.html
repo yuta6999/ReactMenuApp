@@ -37,7 +37,10 @@
             <p>　昼： {props.lMenu}</p>
             <p>　夕： {props.dMenu}</p>
             <div className="ingredients">
-              <dt onClick={toggle} id={props.day}>＜材料＞-----------------------------</dt>
+              <dt onClick={toggle} id={props.day}>
+                ＜材料＞-----------------------------
+                <i className="fa-solid fa-plus"></i>
+              </dt>
               <dd>{props.ingredients}</dd>
             </div>
           </li>

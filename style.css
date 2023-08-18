@@ -97,15 +97,21 @@ dt {
   position: relative;
 }
 
-dt::after {
+/* dt::after {
   content: '+';
   position: absolute;
-  /* top: 8px; */
+  right: 16px;
+  transition: transform .3s;
+} */
+
+dt > i {
+  position: absolute;
+  top: 2px;
   right: 16px;
   transition: transform .3s;
 }
 
-div.appear dt::after {
+div.appear dt > i {
   transform: rotate(45deg);
 }
 
