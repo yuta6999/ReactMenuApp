@@ -8,6 +8,7 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/all.min.css">
 </head>
 <body>
   <div id="container"></div>
@@ -145,7 +146,8 @@
         const chosenMenus = [];
 
         // 献立を作成する日数
-        const days = 3;
+        // const days = 3;
+        const days = 5;
 
         // 献立を作成する日数分だけ繰り返す
         for (let i = 1; i <= days; i++) {
@@ -216,6 +218,11 @@
         return (
           <>
             <h1>献立</h1>
+            <div className="iconBox">
+              <i className="fa-solid fa-cart-shopping "></i>
+              <i className="fa-solid fa-gear"></i>
+              <i className="fa-solid fa-arrow-rotate-right"></i>
+            </div>
             <ul className="menus">
               {menuItems}
             </ul>

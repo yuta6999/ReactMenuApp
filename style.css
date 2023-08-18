@@ -6,6 +6,25 @@ body {
 
 #container {
   margin: 0 8px 40px;
+  position: relative;
+}
+
+.iconBox {
+  position: absolute;
+  top: 0;
+  right: 16px;
+}
+
+.iconBox > i {
+  background-color: #ccc;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  border: #333 2px solid;
+  cursor: pointer;
+  margin-left: 3px;
 }
 
 h1 {
