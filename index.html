@@ -343,7 +343,8 @@
           navigator.clipboard.writeText(toBuy).then(
           () => {
             // コピーに成功したときの処理
-            alert('買い物リストをコピーしました！');
+            const copyButton = document.getElementById('copyButton');
+            copyButton.classList.add('copied');
           },
           () => {
             // コピーに失敗したときの処理
@@ -357,7 +358,7 @@
               <div className="iconBox">
                 {//<i className="fa-regular fa-clipboard"></i>
                 }
-                <i className="fa-solid fa-clipboard" onClick={copy}></i>
+                <i id="copyButton" className="fa-solid fa-clipboard" onClick={copy}></i>
               </div>
               <p>■肉</p>
               {iCheckBox_1}

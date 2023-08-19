@@ -27,6 +27,12 @@ body {
   margin-left: 3px;
 }
 
+.iconBox > i.copied {
+  color: green;
+  background-color: antiquewhite;
+  border-color: green;
+}
+
 #modal .iconBox {
   top: 48px;
   right: 24px;
