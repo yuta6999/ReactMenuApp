@@ -56,8 +56,19 @@
         );
       };
 
+      const ICheckBox = (props) => {
+
+        // 種類が4:調味料等の場合、デフォルトでチェックする(毎回買わないため)
+        return (
+          <div key={props.id}>
+            <input type="checkbox" id={props.id} className="toBuyCheckBox" defaultChecked={ props.type == 4 ? 'checked' : false } data-label={props.name}/>
+            <label htmlFor={props.id}>{props.name}</label>
+          </div>
+        );
+      };
+
       const App = () => {
-        const menus = [
+        const menusMaster = [
           {id: 'K001', type: 1, menu: 'ご飯、納豆、味噌汁'},
           {id: 'K002', type: 1, menu: 'わかめご飯、味噌汁'},
           {id: 'K003', type: 1, menu: 'フレンチトースト、ソーセージ、コンソメスープ'},
@@ -82,7 +93,7 @@
           {id: 'K022', type: 3, menu: 'ご飯、すき焼き'},
         ];
 
-        const dishes = [
+        const dishesMaster = [
           {name: '味噌汁', ingredient: '豆腐、わかめ、味噌、だし'},
           {name: 'わかめご飯', ingredient: 'わかめ、ご飯'},
           {name: 'フレンチトースト', ingredient: '卵、トースト'},
@@ -98,7 +109,7 @@
           {name: '肉うどん', ingredient: '牛肉、うどん'},
         ];
 
-        const ranking = [
+        const rankingMaster = [
           {ranking: '1', title: '簡単！やみつきレモンねぎ塩チキン', dishName: 'レモンねぎ塩チキン'},
           {ranking: '2', title: '簡単ふわとろ！親子丼', dishName: '親子丼'},
           {ranking: '3', title: '大根ときゅうりの三色ナムル', dishName: '大根ときゅうりの三色ナムル'},
@@ -151,6 +162,61 @@
           {ranking: '50', title: 'めんつゆで簡単 麻婆茄子', dishName: '麻婆茄子'},
         ];
 
+        const ingredientsMaster = [
+          {id: 'I001', type: 1, name: 'ハム'},
+          {id: 'I002', type: 1, name: 'ベーコン'},
+          {id: 'I003', type: 1, name: '牛肉'},
+          {id: 'I004', type: 1, name: '豚肉'},
+          {id: 'I005', type: 1, name: '鶏むね肉'},
+          {id: 'I006', type: 1, name: '鶏もも肉'},
+          {id: 'I007', type: 2, name: 'ししゃも'},
+          {id: 'I008', type: 2, name: 'しらす'},
+          {id: 'I009', type: 2, name: 'サバ'},
+          {id: 'I010', type: 2, name: '鮭'},
+          {id: 'I011', type: 3, name: 'もやし'},
+          {id: 'I012', type: 3, name: 'オクラ'},
+          {id: 'I013', type: 3, name: 'カボチャ'},
+          {id: 'I014', type: 3, name: 'キャベツ'},
+          {id: 'I015', type: 3, name: 'コーン'},
+          {id: 'I016', type: 3, name: 'ゴボウ'},
+          {id: 'I017', type: 3, name: 'ジャガイモ'},
+          {id: 'I018', type: 3, name: 'トマト'},
+          {id: 'I019', type: 3, name: 'ニンジン'},
+          {id: 'I020', type: 3, name: 'パプリカ'},
+          {id: 'I021', type: 3, name: 'ピーマン'},
+          {id: 'I022', type: 3, name: 'ブロッコリー'},
+          {id: 'I023', type: 3, name: 'レタス'},
+          {id: 'I024', type: 3, name: 'レンコン'},
+          {id: 'I025', type: 3, name: '大根'},
+          {id: 'I026', type: 3, name: '玉ねぎ'},
+          {id: 'I027', type: 3, name: '白菜'},
+          {id: 'I028', type: 4, name: 'だし'},
+          {id: 'I029', type: 4, name: 'みりん'},
+          {id: 'I030', type: 4, name: 'ケチャップ'},
+          {id: 'I031', type: 4, name: 'コショウ'},
+          {id: 'I032', type: 4, name: 'コンソメ'},
+          {id: 'I033', type: 4, name: 'ゴマ'},
+          {id: 'I034', type: 4, name: 'マヨネーズ'},
+          {id: 'I035', type: 4, name: '創味シャンタン'},
+          {id: 'I036', type: 4, name: '味噌'},
+          {id: 'I037', type: 4, name: '塩'},
+          {id: 'I038', type: 4, name: '料理酒'},
+          {id: 'I039', type: 4, name: '白ゴマ'},
+          {id: 'I040', type: 4, name: '砂糖'},
+          {id: 'I041', type: 4, name: '醤油'},
+          {id: 'I042', type: 5, name: 'うどん'},
+          {id: 'I043', type: 5, name: 'そば'},
+          {id: 'I044', type: 5, name: 'わかめ'},
+          {id: 'I045', type: 5, name: 'カレールー'},
+          {id: 'I046', type: 5, name: 'トースト'},
+          {id: 'I047', type: 5, name: '卵'},
+          {id: 'I048', type: 5, name: '天ぷら粉'},
+          {id: 'I049', type: 5, name: '春雨'},
+          {id: 'I050', type: 5, name: '白米'},
+          {id: 'I051', type: 5, name: '福神漬け'},
+          {id: 'I052', type: 5, name: '豆腐'},
+        ];
+
         const chosenMenus = [];
 
         // 献立を作成する日数
@@ -163,9 +229,9 @@
         for (let i = 1; i <= days; i++) {
 
           // 献立を作成する
-          const bMenus = menus.filter((menu) => { return menu.type === 1; }); // 朝食
-          const lMenus = menus.filter((menu) => { return menu.type === 2; }); // 昼食
-          const dMenus = menus.filter((menu) => { return menu.type === 3; }); // 夕食
+          const bMenus = menusMaster.filter((menu) => { return menu.type === 1; }); // 朝食
+          const lMenus = menusMaster.filter((menu) => { return menu.type === 2; }); // 昼食
+          const dMenus = menusMaster.filter((menu) => { return menu.type === 3; }); // 夕食
 
           let getBMenu = bMenus[Math.floor(Math.random() * bMenus.length)];
           let getLMenu = lMenus[Math.floor(Math.random() * lMenus.length)];
@@ -178,7 +244,7 @@
           const chosenDishes2 = Array.from(new Set(chosenDishes));
 
           for (const dishName of chosenDishes2) {
-            for (const dish of dishes) {
+            for (const dish of dishesMaster) {
               if (dish.name === dishName) {
                 ingredients.push(dish.name + '：' + dish.ingredient);
                 allIngredients = [...allIngredients, ...dish.ingredient.split('、')];
@@ -204,13 +270,30 @@
         // 全食材の重複を削除
         const allIngredients2 = Array.from(new Set(allIngredients));
 
-        // 暫定対応(必要な食材)
-        const allIngredients3 = allIngredients2.map((item, index) => 
-          <div key={index}>
-            <input type="checkbox" id={index} />
-            <label htmlFor={index}>{item}</label>
-          </div>
-        );
+        const ingredients_1 = [];
+        const ingredients_2 = [];
+        const ingredients_3 = [];
+        const ingredients_4 = [];
+        const ingredients_5 = [];
+        
+
+        for (const item of allIngredients2) {
+          for (const iMaster of ingredientsMaster) {
+            if (iMaster.name === item) {
+              if (iMaster.type === 1) { ingredients_1.push({id:iMaster.id, name:iMaster.name, type:iMaster.type}); }
+              if (iMaster.type === 2) { ingredients_2.push({id:iMaster.id, name:iMaster.name, type:iMaster.type}); }
+              if (iMaster.type === 3) { ingredients_3.push({id:iMaster.id, name:iMaster.name, type:iMaster.type}); }
+              if (iMaster.type === 4) { ingredients_4.push({id:iMaster.id, name:iMaster.name, type:iMaster.type}); }
+              if (iMaster.type === 5) { ingredients_5.push({id:iMaster.id, name:iMaster.name, type:iMaster.type}); }
+            }
+          }
+        }
+
+        const iCheckBox_1 = ingredients_1.map((item) => { return (<ICheckBox key={item.id} id={item.id} name={item.name} type={item.type} />); });
+        const iCheckBox_2 = ingredients_2.map((item) => { return (<ICheckBox key={item.id} id={item.id} name={item.name} type={item.type} />); });
+        const iCheckBox_3 = ingredients_3.map((item) => { return (<ICheckBox key={item.id} id={item.id} name={item.name} type={item.type} />); });
+        const iCheckBox_4 = ingredients_4.map((item) => { return (<ICheckBox key={item.id} id={item.id} name={item.name} type={item.type} />); });
+        const iCheckBox_5 = ingredients_5.map((item) => { return (<ICheckBox key={item.id} id={item.id} name={item.name} type={item.type} />); });
 
         const menuItems = chosenMenus.map((menu) => {
           return (
@@ -226,7 +309,7 @@
           );
         });
 
-        const rankingItems = ranking.map((rankingItem) => {
+        const rankingItems = rankingMaster.map((rankingItem) => {
           return (
             <RankedDish 
               key={rankingItem.ranking}
@@ -251,11 +334,41 @@
           mask.classList.add('hidden');
         }
 
+        const copy = () => {
+          const checkboxes = document.querySelectorAll('.toBuyCheckBox:not(:checked)');
+          let toBuy = '';
+          for (const checkbox of checkboxes) {
+            toBuy += checkbox.dataset.label + '\n';
+          }
+          navigator.clipboard.writeText(toBuy).then(
+          () => {
+            // コピーに成功したときの処理
+            alert('買い物リストをコピーしました！');
+          },
+          () => {
+            // コピーに失敗したときの処理
+          });
+        }
+
         return (
           <>
             <section id="modal" className="hidden">
-              <p>買い物リスト</p>
-              {allIngredients3}
+              <h1>買い物リスト</h1>
+              <div className="iconBox">
+                {//<i className="fa-regular fa-clipboard"></i>
+                }
+                <i className="fa-solid fa-clipboard" onClick={copy}></i>
+              </div>
+              <p>■肉</p>
+              {iCheckBox_1}
+              <p>■魚</p>
+              {iCheckBox_2}
+              <p>■野菜</p>
+              {iCheckBox_3}
+              <p>■調味料等</p>
+              {iCheckBox_4}
+              <p>■その他</p>
+              {iCheckBox_5}
               <div id="close" onClick={close}>
                 閉じる
               </div>
